@@ -5,10 +5,10 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    description: {
+    description: [{
         type: String,
         required: true,
-    },
+    }],
     tags: [{
         type: String
     }],
@@ -25,7 +25,28 @@ const CourseSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Admin'
     },
-});
+    modules: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Module'
+    }],
+    feedback: [FeedbackSchema],
+},{
+    timestamps: true
+  });
+
+const FeedbackSchema = new mongoose.Schema({
+    respondent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    message: {
+        type: String,
+        required: true,
+    }
+},{
+    timestamps: true
+  });
 
 const Course = mongoose.model("Course", CourseSchema);
 
