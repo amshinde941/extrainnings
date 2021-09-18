@@ -9,7 +9,7 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true,
     }],
-    tags: [{
+    skills: [{
         type: String
     }],
     outcomes: [{
@@ -20,6 +20,10 @@ const CourseSchema = new mongoose.Schema({
         min: 0,
         max: 5,
         required: true
+    },
+    price: {
+        type: Number,
+        required: true,
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,

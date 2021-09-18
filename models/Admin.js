@@ -13,10 +13,6 @@ const AdminSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    sign: {
-        type: String,
-        required: true,
-    },
     isInstitute: {
         type: Boolean,
         default: false,

@@ -44,6 +44,10 @@ const completedCoursesSchema = new mongoose.Schema({
   },
   certificate: {
     type: String,
+  },
+  isCompleted: {
+    type: Boolean,
+    default: false,
   }
 });
 
