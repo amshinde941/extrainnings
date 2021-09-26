@@ -1,22 +1,17 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+
+const completedCoursesSchema = new mongoose.Schema({
+  course: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Course',
   },
-  email: {
-    type: String,
-    required: true,
+  completionDate: {
+    type: Date,
   },
-  password: {
+  certificate: {
     type: String,
-    required: true,
-  },
-  completedCourses: [completedCoursesSchema],
-  complaint: [Complaint],
-},{
-  timestamps: true
+  }
 });
 
 const Complaint = new mongoose.Schema({
@@ -34,18 +29,32 @@ const Complaint = new mongoose.Schema({
   timestamps: true
 });
 
-const completedCoursesSchema = new mongoose.Schema({
-  course: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Course',
-  },
-  completionDate: {
-    type: Date,
-  },
-  certificate: {
+
+const UserSchema = new mongoose.Schema({
+  name: {
     type: String,
-  }
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },isAdmin:{
+    type:Boolean,
+    default:false
+  },
+  completedCourses: [completedCoursesSchema],
+  complaint: [Complaint],
+},{
+  timestamps: true
 });
+
+
+
+
 
 const User = mongoose.model("User", UserSchema);
 

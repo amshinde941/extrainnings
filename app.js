@@ -1,15 +1,32 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const express=require("express");
+const app=express();
+const dotenv = require('dotenv');
+const mongoose=require('mongoose');
 
-const app=express()
-const port=process.env.PORT || 3000
+dotenv.config();
 
-app.get("/",(req,res)=>{
-    res.send("Hello World !!");
-});
+//import Routes
+const authRoute=require('./routes/auth');
+//const postRoute=require('./routes/posts')
+
+//connect to DB
+mongoose.connect(
+    process.env.DB_CONNECT,
+    { 
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+     },
+    ()=>console.log('Connected to DB')
+);
 
 
-app.listen(port,()=>{
-    console.log(`App running at port ${port}`);
-});
+
+//middleware
+app.use(express.json());
+
+
+//Route middleware
+app.use('/api/user',authRoute);
+//app.use('/api/posts',postRoute);
+
+app.listen(3000,()=>console.log('Server up and running'));
