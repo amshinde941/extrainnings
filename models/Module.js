@@ -1,5 +1,15 @@
 const mongoose = require("mongoose");
-
+const quizSchema = new mongoose.Schema({
+    question: {
+        type: String,
+    },
+    options: [{
+        type: String,
+    }],
+    answer: {
+        type: String,
+    }
+});
 const ModuleSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -22,18 +32,6 @@ const ModuleSchema = new mongoose.Schema({
     quiz: [quizSchema],
 },{
     timestamps: true
-});
-
-const quizSchema = new mongoose.Schema({
-    question: {
-        type: String,
-    },
-    options: [{
-        type: String,
-    }],
-    answer: {
-        type: String,
-    }
 });
 
 const Module = mongoose.model("Module", ModuleSchema);

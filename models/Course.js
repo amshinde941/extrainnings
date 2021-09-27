@@ -1,5 +1,18 @@
 const mongoose = require("mongoose");
 
+const FeedbackSchema = new mongoose.Schema({
+    respondent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    message: {
+        type: String,
+        required: true,
+    }
+},{
+    timestamps: true
+  });
+  
 const CourseSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -35,19 +48,6 @@ const CourseSchema = new mongoose.Schema({
         ref: 'Module'
     }],
     feedback: [FeedbackSchema],
-},{
-    timestamps: true
-  });
-
-const FeedbackSchema = new mongoose.Schema({
-    respondent: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    message: {
-        type: String,
-        required: true,
-    }
 },{
     timestamps: true
   });
