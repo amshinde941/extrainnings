@@ -29,13 +29,13 @@
         "braintrainer"
     ]
 }
-[
+
 {
     "title": "Introduction",
-    "isLecture": true,
-},
+    "isLecture": true
+}
+
 {
     "title": "chess1",
-    "isLecture": true,
+    "isLecture": true
 }
-]

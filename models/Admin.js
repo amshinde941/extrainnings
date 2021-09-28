@@ -23,10 +23,10 @@ const AdminSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: true
-    }
+    } 
 },{
     timestamps: true
-  });
+});
 
 const Admin = mongoose.model("Admin", AdminSchema);
 

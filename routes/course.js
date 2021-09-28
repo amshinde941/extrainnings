@@ -24,10 +24,9 @@ courseRouter.route('/')
     })
 
     .post((req, res, next) => {
-        // req.body.author = req.admin._id;
+        //req.body.author = req.admin._id;
         Courses.create(req.body)
             .then((course) => {
-                console.log('Course created : ', course);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(course);
