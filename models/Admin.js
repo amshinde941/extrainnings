@@ -19,6 +19,10 @@ const AdminSchema = new mongoose.Schema({
     },
     instituteName: {
         type: String,
+    },
+    isAdmin: {
+        type: Boolean,
+        default: true
     }
 },{
     timestamps: true

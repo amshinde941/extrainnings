@@ -1,0 +1,41 @@
+{
+    "email":"amshinde941@gmail.com",
+    "password":"123456",
+    "isAdmin":true
+}
+{
+    "title": "cricket",
+    "description": [
+        "its a bat and ball game",
+        "bat hits ball"
+    ],
+    "price":400,
+    "rating":4,
+    "skills": [
+        "cricket",
+        "batsmen"
+    ]
+}
+{
+    "title": "chess",
+    "description": [
+        "its mind game",
+        "really good for memory"
+    ],
+    "price":700,
+    "rating":2,
+    "skills": [
+        "chess",
+        "braintrainer"
+    ]
+}
+[
+{
+    "title": "Introduction",
+    "isLecture": true,
+},
+{
+    "title": "chess1",
+    "isLecture": true,
+}
+]

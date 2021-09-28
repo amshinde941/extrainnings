@@ -40,7 +40,7 @@ const CourseSchema = new mongoose.Schema({
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Admin'
+        ref: 'Admin',
     },
     modules: [
         {
