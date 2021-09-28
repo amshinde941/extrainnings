@@ -48,11 +48,7 @@ moduleRouter.route('/:courseId/modules')
             }, (err) => next(err))
             .catch((err) => next(err));
     })
-    .put((req, res, next) => {
-        res.statusCode = 403;
-        res.end('PUT operation not supported on /courses/'
-            + req.params.courseId + '/modules');
-    })
+    
     .delete((req, res, next) => {
         Courses.findById(req.params.courseId)
             .then((course) => {
