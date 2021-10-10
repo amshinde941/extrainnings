@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 const quizSchema = new mongoose.Schema({
     question: {
         type: String,
@@ -14,6 +14,7 @@ const ModuleSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+        trim: true,
     },
     isLecture: {
         type: Boolean,
@@ -28,12 +29,10 @@ const ModuleSchema = new mongoose.Schema({
     resourses: [{
         type: String,
     }],
-    
     quiz: [quizSchema],
 },{
     timestamps: true
 });
 
-const Module = mongoose.model("Module", ModuleSchema);
+export const Module = mongoose.model("Module", ModuleSchema);
 
-module.exports = Module;

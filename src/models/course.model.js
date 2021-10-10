@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const FeedbackSchema = new mongoose.Schema({
     respondent: {
@@ -11,19 +11,21 @@ const FeedbackSchema = new mongoose.Schema({
     }
 },{
     timestamps: true
-  });
+});
   
 const CourseSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+        trim: true,
+        unique: true,
     },
     description: [{
         type: String,
         required: true,
     }],
     skills: [{
-        type: String
+        type: String,
     }],
     outcomes: [{
         type: String
@@ -40,7 +42,7 @@ const CourseSchema = new mongoose.Schema({
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Admin',
+        ref: 'User',
     },
     modules: [
         {
@@ -52,6 +54,5 @@ const CourseSchema = new mongoose.Schema({
     timestamps: true
   });
 
-const Course = mongoose.model("Course", CourseSchema);
+export const Course = mongoose.model("Course", CourseSchema);
 
-module.exports = Course;
