@@ -1,18 +1,16 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-import { userAuth, adminAuth } from "../middleware/index";
-const Courses = require("../models/Course");
+import express from "express";
+import { Course } from "../models/index";
+import userAuth from "../middleware/userAuth";
+import adminAuth from "../middleware/adminAuth"
+import { emailSender } from '../emailSender'
 
 const courseRouter = express.Router();
-
-courseRouter.use(bodyParser.json());
 
 courseRouter
   .route("/")
 
   .get(userAuth, (req, res, next) => {
-    Courses.find(req.body)
+    Course.find(req.body)
       .then(
         (courses) => {
           res.statusCode = 200;
@@ -26,7 +24,7 @@ courseRouter
 
   .post(adminAuth, (req, res, next) => {
     req.body.author = req.user._id;
-    Courses.create(req.body)
+    Course.create(req.body)
       .then(
         (course) => {
           res.statusCode = 200;
@@ -42,7 +40,7 @@ courseRouter
   .route("/:courseId")
 
   .get((req, res, next) => {
-    Courses.findById(req.params.courseId)
+    Course.findById(req.params.courseId)
       .populate("modules")
       .then(
         (course) => {
@@ -56,7 +54,7 @@ courseRouter
   })
 
   .put(adminAuth, (req, res, next) => {
-    Courses.findOne(req.params.courseId)
+    Course.findOne(req.params.courseId)
       .then((course) => {
         if (course.author == req.user._id) {
           Courses.findByIdAndUpdate(
@@ -79,7 +77,7 @@ courseRouter
   })
 
   .delete(adminAuth, (req, res, next) => {
-    Courses.findOne(req.params.courseId)
+    Course.findOne(req.params.courseId)
       .then((course) => {
         if (course.author == req.user._id) {
           Courses.findByIdAndRemove(req.params.courseId).then(
@@ -96,4 +94,4 @@ courseRouter
 
   });
 
-module.export = courseRouter;
+export { courseRouter }

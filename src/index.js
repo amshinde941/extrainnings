@@ -6,7 +6,7 @@ import connectDB from "./db/mongoose.js";
 dotenv.config();
 
 //import Routes
-import {UserRouter} from './routes/index.js';
+import {UserRouter,courseRouter} from './routes/index.js';
 
 //connect to DB
 connectDB();
@@ -16,8 +16,7 @@ app.use(express.json());
 
 //Route middleware
 app.use(UserRouter);
-
-//app.use('/api/posts',postRoute);
+app.use(courseRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () =>

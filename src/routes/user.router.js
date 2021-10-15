@@ -1,6 +1,7 @@
 import express from "express";
 import { User } from "../models/index";
 import userAuth from "../middleware/userAuth";
+import { emailSender } from '../emailSender'
 const UserRouter = express.Router();
 
 UserRouter.post("/signup", async (req, res) => {
@@ -9,6 +10,11 @@ UserRouter.post("/signup", async (req, res) => {
     await user.save();
     const token = await user.generateAuthToken();
 
+    emailSender({
+      "email":user.email,
+      "subject":"Sign up Successfully !" ,
+      "text":"Welcome to ExtraInnings.io"
+    })
     res.status(201).send({ user, token });
   } catch (e) {
     console.log(e);
